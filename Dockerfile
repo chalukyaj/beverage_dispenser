@@ -9,6 +9,6 @@ RUN pip install poetry
 WORKDIR /app
 COPY . .
 RUN poetry install
-#ENTRYPOINT [ "/app/server.sh" ]
-ENTRYPOINT [ "tail", "-f", "/dev/null" ]
+ENTRYPOINT [ "/app/server.sh" ]
+#ENTRYPOINT [ "tail", "-f", "/dev/null" ]
 EXPOSE 5000

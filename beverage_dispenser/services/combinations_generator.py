@@ -7,7 +7,7 @@ class CombinationsGenerator:
         self.combinations = self.combinations(self.iterable)
 
     def combinations(self, elems):
-        print(elems)
+        # print(elems)
         if not len(elems):
             return [[]]
 

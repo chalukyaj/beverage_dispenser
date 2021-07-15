@@ -1,9 +1,9 @@
 # Coffee Dispenser Object
 ## Table of Contents
 
-* [Get Started](https://github.com/chalukyaj/coffee-dispenser/blob/main/docs/getting-started.md)
-<!-- * [Database](https://github.com/chalukyaj/coffee-dispenser/blob/main/docs/database.md) -->
-* [Testing](https://github.com/chalukyaj/coffee-dispenser/blob/main/docs/testing.md)
+* [Get Started](https://github.com/chalukyaj/beverage_dispenser/blob/main/docs/getting-started.md)
+<!-- * [Database](https://github.com/chalukyaj/beverage_dispenser/blob/main/docs/database.md) -->
+* [Testing](https://github.com/chalukyaj/beverage_dispenser/blob/main/docs/testing.md)
 
 ## Components
 
