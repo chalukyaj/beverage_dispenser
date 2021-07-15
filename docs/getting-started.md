@@ -6,8 +6,6 @@ For rebuilding, use `docker-compose up --build`. Pass `-d` if you want to run th
 
 SSH into the container by running `docker exec -it beverage_dispenser_dispenser_api_1 /bin/bash`
 
-RUN Tests and return captured output `docker exec beverage_dispenser_dispenser_api_1 /app/run-tests.sh`
-
 NOTE: The container name `beverage_dispenser_dispenser_api_1` can change on your machine, please use `docker ps` to get the list of running containers and get the name of this container from there.
 
 ### Run the application
