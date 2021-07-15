@@ -1,0 +1,82 @@
+import os
+from fastapi import Request
+from beverage_dispenser.providers.mongo import MongoDB
+
+os.path.join(os.getcwd(), "beverage_dispenser")
+
+
+class Dispenser:
+    def __init__(self, nozzles, total_quantity, total_beverages, beverages):
+        self.nozzles = nozzles
+        self.total_quantity = total_quantity
+        self.total_beverages = total_beverages
+        self.beverages = beverages
+
+    def get_beverages_order(self):
+        return ' -> '.join(
+            beverage['beverage'] for beverage in self.beverages
+        )
+
+    def reorder_beverages(self, pos1, pos2):
+        self.beverages[pos1], self.beverages[pos2] = (
+            self.beverages[pos2],
+            self.beverages[pos1]
+        )
+
+    def recurse(self, start, end, depth=0):
+        if start == end:
+            self.try_dispensing_beverages()
+        else:
+            for ind in range(start, end+1):
+                self.reorder_beverages(start, ind)
+                # print(start, end, self.get_beverages_order())
+                self.recurse(start + 1, end, depth + 1)
+                self.reorder_beverages(ind, start)
+
+    def try_dispensing_beverages(self):
+        for i in 
+
+    def dispense(self):
+        self.recurse(0, self.total_beverages - 1)
+
+
+async def configure_dispenser(request: Request):
+    data = (await request.json())['machine']
+
+    beverages = []
+    index = 0
+    for beverage, ingredients in data['beverages'].items():
+        ingredients['index'] = index
+        ingredients['beverage'] = beverage
+        beverages.append(ingredients)
+        index += 1
+
+    processor = Dispenser(
+        data['outlets']['count_n'],
+        data['total_items_quantity'],
+        index,
+        beverages
+    )
+
+    processor.dispense()
+
+
+# async def configure_dispenser(request: Request):
+#     data = (await request.json())['machine']
+#     #print(data)
+#     mongo = MongoDB.getClient()
+#     beverages = []
+#     index = 0
+#     for beverage, ingredients in data['beverages'].items():
+#         ingredients['index'] = index
+#         ingredients['beverage'] = beverage
+#         beverages.append(ingredients)
+#         index += 1
+
+#     mongo.Dispenser.insert_one({
+#         'requestID': request.state.request_id,
+#         'nozzles': data['outlets']['count_n'],
+#         'total_quantity': data['total_items_quantity'],
+#         'total_beverages': index,
+#         'beverages': beverages
+#     })

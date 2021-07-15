@@ -1,0 +1,94 @@
+class Node:
+    def __init__(self, index):
+        self.index = index
+        self.nextNode = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+
+class CombinationGenerator:
+    def __init__(self, N: int):
+        self.list = LinkedList()
+        self.list.head = Node(0)
+        self.results = []
+        prev_node = self.list.head
+
+        for i in range(1, N):
+            prev_node.nextNode = Node(i)
+            prev_node = prev_node.nextNode
+
+    def initializeResult(self, index, R):
+
+        node = self.list.head
+        for i in range(0, index):
+            node = node.nextNode
+
+        count = 0
+        self.result = []
+        while node and count < R:
+            self.result.append(node)
+            node = node.nextNode
+            count += 1
+        if count < R:
+            for v in self.results:
+                print("FINAL : ", v)
+            raise Exception('Here')
+
+    def generate(self, R: int):
+        self.print()
+        self.initializeResult(0, R)
+        self.findCombinations(R)
+
+    def addResult(self):
+        result = []
+        for v in self.result:
+            result.append(v.index)
+        self.results.append(result)
+
+    def findCombinations(self, R: int):
+        lenMinusOne = len(self.result) - 1
+        for i in reversed(range(0, R)):
+            node = self.result[i]
+            lastNode = None
+
+            print("LLastNodeToTraverse", node.index, lastNode.index if lastNode else 'EMPTY')
+            if i < lenMinusOne:
+                print("CALING", len(self.result)-i-1, R)
+                self.initializeResult(len(self.result)-i-1, R)
+                print('New Array ###################')
+                self.printR()
+                lastNode = self.result[i+1]
+
+            print("LLLLLastNodeToTraverse", node.index, lastNode.index if lastNode else 'EMPTY')
+            index = 0 
+            while node:
+                print("\n\nNode: ", i, index,  node.index)
+                self.result[i] = node
+                self.printR()
+                self.addResult()
+                node = node.nextNode
+                index += 1
+                if node == lastNode:
+                    break
+        for v in self.results:
+            print("FINAL : ", v)
+
+    def printR(self):
+        string = ''
+        for i in range(0, len(self.result)):
+            string += f'{self.result[i].index}, '
+        print("\nResult :  ", string)
+
+    def print(self):
+        node = self.list.head
+        string = ''
+        while node:
+            string += f'{node.index}, '
+            node = node.nextNode
+        print("\nOriginal", string)
+
+c = CombinationGenerator(4)
+c.generate(2)
