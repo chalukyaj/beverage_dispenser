@@ -5,6 +5,7 @@
 <!-- * [Database](https://github.com/chalukyaj/beverage_dispenser/blob/main/docs/database.md) -->
 * [Testing](https://github.com/chalukyaj/beverage_dispenser/blob/main/docs/testing.md)
 
+Follow one of the above links to learn further
 ## Components
 
 * [Python 3.8](https://docs.python.org/3.8/)
